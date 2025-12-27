@@ -5,6 +5,7 @@ import {
   updateItemInCart,
   deleteItemInCart,
   clearCart,
+  checkout,
 } from "../services/cartService";
 import validateJWT from "../middlewares/validateJWT";
 import { ExRequest } from "../types/ExRequest";
@@ -41,4 +42,11 @@ router.delete("/items/:productId", validateJWT, async (req: ExRequest, res) => {
   const response = await deleteItemInCart({ userId, productId });
   res.status(response.statusCode).send(response.data);
 });
+
+router.post("/checkout",validateJWT, async(req:ExRequest,res)=>{
+  const userId=req?.user?._id;
+  const { address }= req.body
+  const response = await checkout({userId,address});
+  res.status(response.statusCode).send(response.data);
+})
 export default router;
