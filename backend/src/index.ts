@@ -1,4 +1,4 @@
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import userRoute from "./routes/userRoutes";
@@ -12,7 +12,7 @@ const port = 3002;
 app.use(express.json());
 
 mongoose
-  .connect(process.env.DATABASE_URL||'')
+  .connect(process.env.DATABASE_URL || "")
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Could not connect to MongoDB", err));
 
